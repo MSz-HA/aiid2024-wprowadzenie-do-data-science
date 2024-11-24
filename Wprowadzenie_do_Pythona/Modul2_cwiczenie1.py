@@ -9,3 +9,4 @@ separator_zrodlowy : str = input('Wprowadź separator źródłowy:\n')
 separator_docelowy : str = input('Wprowadź separator docelowy:\n')
 
 print(separator_docelowy.join(linia_danych.split(separator_zrodlowy)))
+print(linia_danych.replace(separator_zrodlowy,separator_docelowy))
