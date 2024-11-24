@@ -4,8 +4,8 @@
 
 lancuch_znakow = input('Wprowadź dowolny łańcuch znaków:\n')
 
-print("Pierwsza połowa:\n",lancuch_znakow[:int(len(lancuch_znakow)/2)])
+print("Pierwsza połowa:\n", lancuch_znakow[:len(lancuch_znakow) // 2])
 
-print("Druga połowa:\n",lancuch_znakow[int(len(lancuch_znakow)/2):])
+print("Druga połowa:\n", lancuch_znakow[len(lancuch_znakow) // 2:])
 
-print("Co drugi znak od końca łańcucha:\n",lancuch_znakow[::-2])
+print("Co drugi znak od końca łańcucha:\n", lancuch_znakow[::-2])
