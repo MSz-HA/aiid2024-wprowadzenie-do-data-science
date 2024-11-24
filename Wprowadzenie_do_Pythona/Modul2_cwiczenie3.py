@@ -1,3 +1,11 @@
+# Wyświetl na konsoli dowolny ciąg znaków i wykorzystaj wbudowane metody:
+# title(),
+# capitalize(),
+# zfill(),
+# upper(),
+# count(),
+# center().
+
 ciag_znakow : str = input("Wprowadź dowolny ciąg znaków:\n")
 
 print(ciag_znakow.title())
