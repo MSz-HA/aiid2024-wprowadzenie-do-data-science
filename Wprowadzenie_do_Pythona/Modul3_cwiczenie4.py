@@ -11,6 +11,4 @@ print(months['en'][4])
 
 #Zadanie 6
 text = 'Marianna'
-text = set(text)
-text = list(text)
 print(dict.fromkeys(text, 1))
