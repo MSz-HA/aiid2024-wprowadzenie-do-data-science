@@ -4,7 +4,19 @@
 # listy.
 import csv
 
-with open('wdbc.data', mode='r', newline='', encoding='utf-8') as file:
-    lista_1 = csv.reader(file, delimiter=' ', quotechar='|')
-    for row in lista1:
-        print(', '.join(row))
+def wczytanie_datasetu(sciezka,czy_etykieta):
+    with open(sciezka, mode='r', newline='', encoding='utf-8') as file:
+        reader = csv.reader(file, delimiter=',', quotechar='|')
+        etykieta = []
+        lista = []
+        if czy_etykieta:
+            etykieta = next(reader, None)
+
+        for row in reader:
+            lista.append(row)
+            
+        return(lista, etykieta)
+
+lista, etykieta = wczytanie_datasetu('.\\Wprowadzenie_do_Pythona\\wdbc.data',0)
+print(lista)
+print(etykieta)
