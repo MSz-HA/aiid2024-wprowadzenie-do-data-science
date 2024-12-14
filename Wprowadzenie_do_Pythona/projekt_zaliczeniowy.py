@@ -17,30 +17,71 @@
 # dane zostaną zapisane.
 import csv
 
-etykieta =[]
-lista = []
+def wczytanie_datasetu(sciezka, czy_etykieta = False):
+    global etykieta,lista
+    etykieta = []
+    lista = []
 
-def wczytanie_datasetu(sciezka,czy_etykieta):
-    with open(sciezka, mode='r', newline='', encoding='utf-8') as file:
-        reader = csv.reader(file, delimiter=',', quotechar='|')
-
-        if czy_etykieta:
-            row_1 = next(reader, None)
-            etykieta.append(row_1)
-
-        for row in reader:
-            lista.append(row)
-
+    try:
+        with open(sciezka, mode='r', newline='', encoding='utf-8') as file:
+            odczyt = csv.reader(file, delimiter=',')
+            if czy_etykieta:
+                etykieta = next(odczyt, [])
+            lista = [wiersz for wiersz in odczyt]
+    except FileNotFoundError:
+        print(f"Błąd: Plik {sciezka} nie został znaleziony.")
+    except Exception as e:
+        print(f"Błąd: {e}")
 
 def wypisanie_etykiet():
     if etykieta: print(etykieta)
     else: print('Nie było etykiet w danym datasecie')
 
-def wypisanie_danych(poczatek = 0, koniec = len(lista)):
+def wypisanie_danych(poczatek = 0, koniec = None):
+    if koniec is None:
+        koniec = len(lista)
     print(lista[poczatek:koniec])
 
-print(len(lista))
-wczytanie_datasetu('.\\Wprowadzenie_do_Pythona\\wdbc.data',0)
-# print(lista[0:len(lista)])
-print(len(lista))
-wypisanie_danych()
+def podzial_datasetu(trening,test,walidacja):
+    n = len(lista)
+    trening = int(trening * n)
+    test = int(test * n)
+    walidacja = int(walidacja * n)
+
+    return lista[:trening], lista[trening:trening + test], lista[trening + test:trening + test + walidacja]
+
+def klasy_decyzyjne(numer_kolumny_klasy_decyzyjnej = 0):
+    klasy = []
+
+    for wiersz in lista:
+        klasy.append(wiersz[numer_kolumny_klasy_decyzyjnej])
+
+    klasy_set = list(set(klasy))
+    krotki_klas = []
+
+    for element in klasy_set:
+        krotki_klas.append((element, klasy.count(element)))
+
+    print(krotki_klas)
+
+def wypisanie_danych_klasy (klasa, numer_kolumny_klasy_decyzyjnej = 0):
+    lista_klasy = [wiersz for wiersz in lista if wiersz[numer_kolumny_klasy_decyzyjnej]==klasa]
+    print(lista_klasy)
+
+def zapis_danych_do_pliku (lista_do_zapisu, nazwa_pliku):
+    try:
+        with open(nazwa_pliku,'w', newline='') as csvfile:
+            zapis = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            zapis.writerows(lista_do_zapisu)
+    except Exception as e:
+        print(f"Błąd podczas zapisu do pliku: {e}")
+
+# Przykładowe komendy dla zbioru https://archive.ics.uci.edu/dataset/17/breast+cancer+wisconsin+diagnostic
+
+# wczytanie_datasetu('wdbc.data',False)
+# wypisanie_etykiet()
+# wypisanie_danych()
+# trening, test, walidacja = podzial_datasetu(0.3,0.3,0.4)
+# klasy_decyzyjne(1)
+# wypisanie_danych_klasy('M',1)
+# zapis_danych_do_pliku(trening,'zapis.csv')
