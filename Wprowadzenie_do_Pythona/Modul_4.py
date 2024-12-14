@@ -1,4 +1,4 @@
-def zadanie3():
+def zadanie_3():
     text = input("Podaj trzy liczby podzielone spacjami:\n")
     lista_liczb = text.rsplit(' ')
     if (0 < int(lista_liczb[0]) <= 10) and (
@@ -7,7 +7,7 @@ def zadanie3():
     else:
         print('Warunki nie są spełnione')
 
-#zadanie3()
+#zadanie_3()
 
 
 def zadanie_4():
@@ -44,17 +44,17 @@ def zadanie_6():
 #zadanie_6()
 
 
-def zadanie7_for():
+def zadanie_7_for():
     liczba = input('Podaj liczbę wielocyfrową:\n')
     suma = 0
     for cyfra in liczba:
         suma += int(cyfra)
     print(f'Wynik: {suma}')
 
-#zadanie7_for()
+#zadanie_7_for()
 
 
-def zadanie7_while():
+def zadanie_7_while():
     liczba = input('Podaj liczbę wielocyfrową:\n')
     suma = 0
     liczba = list(liczba)
@@ -62,9 +62,9 @@ def zadanie7_while():
         suma += int(liczba.pop())
     print(f'Wynik: {suma}')
 
-# zadanie7_while()
+# zadanie_7_while()
 
-def zadanie8():
+def zadanie_8():
     wysokosc = input('Podaj wysokość wieży:\n')
     if int(wysokosc) > 10:
         print('Masz wieżo Babel.')
@@ -72,24 +72,24 @@ def zadanie8():
         for i in range(1, int(wysokosc) + 1):
             print('A' * i)
 
-# zadanie8()
+# zadanie_8()
 
 
-def zadanie9():
+def zadanie_9():
     for i in range(1, 11):
         for j in range(1, 11):
             print(i * j, end="\t")
         print()
 
 
-# zadanie9()
+# zadanie_9()
 
 
-def zadanie10():
+def zadanie_10():
     wysokosc = input('Podaj wysokość diamentu od 3 do 9, wyłącznie nieparzyste:\n')
     wysokosc = int(wysokosc)
     lista = list(range(1, wysokosc + 1, 2)) + list(range(wysokosc - 2, 0, -2))
     for i in lista:
         print(str('o' * i).center(wysokosc))
 
-# zadanie10()
+# zadanie_10()
